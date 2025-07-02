@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Infomations</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap">
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <script type="module" src="./index.js"></script>
+
+    <div id="section">
+        <div id="input-container">
+            <div class="title-wrapper">
+                <div class="info-title-wrapper">
+                    <div class="blue-column"></div>
+                    <h1 class="info-title">Student Information</h1>
+                </div>
+                <p class="title-description">Fill out a few detail to regist student information </p>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="student-detail">
+                    <h2 class="content-title">Student Detail</h2>
+                    
+                    <div class="image">
+                        <input type="file" id="student-image" class="image-input">
+                        <span style="font-size: 0.7rem; font-weight: 300;">📷 Upload a face photo. Max size 10MB</span>
+                    </div>
+
+                    <div class="student-number">
+                        <label for="student-number" class="title-on-input">Student Number</label>
+                        <input type="number" id="student-number-input" class="input">
+                    </div>
+
+                    <div class="student-name">
+                        <div class="student-name-first-name">
+                            <label for="first-name" class="title-on-input">First Name</label>
+                            <input type="text" id="first-name" class="input">
+                        </div>
+
+                        <div class="student-name-last-name">
+                            <label for="last-name" class="title-on-input">Last-Name</label>
+                            <input type="text" id="last-name" class="input">
+                        </div>
+                    </div>
+
+                    <div class="student-birth-gender">
+                        <div class="student-birth">
+                            <input type="date" id="student-birth" class="input">
+                        </div>
+
+                        <div class="student-gender">
+                            <select id="student-gender" class="gender input" style="cursor: pointer;" name="gender">
+                                <option value="" disabled selected hidden>Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="additional-info">
+                    <h2 class="additional-title">Additional Information</h2>
+
+                    <div class="social-inputs">
+                        <div class="social">Social</div>
+                        <div class="social-wrapper">
+                            <input id="student-social" type="url" placeholder="URL" class="social-link-input"></input>
+                        </div>
+                    </div>
+
+                    <div class="mobile-inputs">
+                        <div class="mobile">Mobile</div>
+                        <div class="mobile-wrapper">
+                            <input id="student-phone" type="number" placeholder="Phone Number" class="mobile-input"></input>
+                            <input id="student-email" type="email" placeholder="Email" class="email-input"></input>
+                        </div>
+                    </div>
+
+                    <div class="address-inputs">
+                        <div class="address-title">Address</div>
+
+                        <div class="address">
+                            <input id="student-address" type="text" placeholder="Address" class="input">
+                        </div>
+
+                        <div class="barcode">
+                            <input id="student-barcode" type="text" placeholder="Barcode" class="input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="memo">
+                <h2 class="memo-title">Memo</h2>
+                <textarea id="student-memo" type="text" placeholder="Write your memo here" class="memo-input"></textarea>
+            </div>
+
+            <div class="button-wrapper">
+                <button id="send" class="send">Send</button>
+            </div>
+        </div>
+
+        <div id="info-container">
+            <p id="student-info">Đây là thông tin được lưu qua</p>
+        </div>
+    </div>
+</body>
+</html>

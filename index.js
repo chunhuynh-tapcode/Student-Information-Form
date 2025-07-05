@@ -1,12 +1,28 @@
 import { createStore } from 'http://cdn.skypack.dev/redux';
 
-const initialState = '';
+const initialState = {
+    img: '',
+    number: '',
+    firstName: '',
+    lastName: '',
+    birth: '',
+    gender: '',
+    social: '',
+    phone: '',
+    email: '',
+    address: '',
+    barcode: '',
+    memo: ''
+};
 
 //Reducer
 function reducer(state = initialState, action) {
     switch (action.type) {
         case 'SEND':
-            return state + action.data
+            return {
+                ...state,
+                [action.field]: action.data
+            }
         default:
             return state
     }
@@ -27,8 +43,11 @@ const stuBarcode = document.getElementById('student-barcode')
 const stuMemo = document.getElementById('student-memo')
 
 let stuImgData = '';
-stuImg.addEventListener('input', function(e) {
-    stuImgData = e.target.value
+stuImg.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        stuImgData = URL.createObjectURL(file);
+    }
 });
 let stuNumbData = '';
 stuNumb.addEventListener('input', function(e) {
@@ -80,9 +99,10 @@ stuMemo.addEventListener('textarea', function(e) {
 const store = window.store = createStore(reducer);
 
 // Action
-function actionSend(data) {
+function actionSend(field, data) {
     return {
         type: 'SEND',
+        field,
         data
     }
 }
@@ -92,19 +112,19 @@ const send = document.querySelector('#send')
 
 // Event handlers
 send.onclick = () => {
-    store.dispatch(actionSend(stuImgData))
-    store.dispatch(actionSend(stuNumbData))
-    store.dispatch(actionSend(stuFNameData))
-    store.dispatch(actionSend(stuLNameData))
-    store.dispatch(actionSend(stuBirthData))
-    store.dispatch(actionSend(stuGenderData))
-    store.dispatch(actionSend(stuSocialData))
-    store.dispatch(actionSend(stuPhoneData))
-    store.dispatch(actionSend(stuEmailData))
-    store.dispatch(actionSend(stuAddressData))
-    store.dispatch(actionSend(stuBarcodeData))
-    store.dispatch(actionSend(stuMemoData))
-}
+  store.dispatch(actionSend('img', stuImgData));
+  store.dispatch(actionSend('number', stuNumbData));
+  store.dispatch(actionSend('firstName', stuFNameData));
+  store.dispatch(actionSend('lastName', stuLNameData));
+  store.dispatch(actionSend('birth', stuBirthData));
+  store.dispatch(actionSend('gender', stuGenderData));
+  store.dispatch(actionSend('social', stuSocialData));
+  store.dispatch(actionSend('phone', stuPhoneData));
+  store.dispatch(actionSend('email', stuEmailData));
+  store.dispatch(actionSend('address', stuAddressData));
+  store.dispatch(actionSend('barcode', stuBarcodeData));
+  store.dispatch(actionSend('memo', stuMemoData));
+};
 
 // Listener
 store.subscribe(() => {
@@ -113,8 +133,23 @@ store.subscribe(() => {
 
 // Render
 function render() {
-    const output = document.querySelector('#student-info');
-    output.innerText = store.getState();
+  const state = store.getState();
+  const output = document.querySelector('#student-info');
+  output.innerHTML = `
+    <div>
+      <img src="${state.img}" alt="Student Image" width="200" />
+      <p><strong>Number:</strong> ${state.number}</p>
+      <p><strong>Name:</strong> ${state.firstName} ${state.lastName}</p>
+      <p><strong>Birth:</strong> ${state.birth}</p>
+      <p><strong>Gender:</strong> ${state.gender}</p>
+      <p><strong>Social:</strong> ${state.social}</p>
+      <p><strong>Phone:</strong> ${state.phone}</p>
+      <p><strong>Email:</strong> ${state.email}</p>
+      <p><strong>Address:</strong> ${state.address}</p>
+      <p><strong>Barcode:</strong> ${state.barcode}</p>
+      <p><strong>Memo:</strong> ${state.memo}</p>
+    </div>
+  `;
 }
 
 render();

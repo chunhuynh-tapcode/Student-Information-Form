@@ -66,7 +66,7 @@ stuBirth.addEventListener('input', function(e) {
     stuBirthData = e.target.value
 });
 let stuGenderData = '';
-stuGender.addEventListener('select', function(e) {
+stuGender.addEventListener('change', function(e) {
     stuGenderData = e.target.value
 });
 let stuSocialData = '';
@@ -90,7 +90,7 @@ stuBarcode.addEventListener('input', function(e) {
     stuBarcodeData = e.target.value
 });
 let stuMemoData = '';
-stuMemo.addEventListener('textarea', function(e) {
+stuMemo.addEventListener('change', function(e) {
     stuMemoData = e.target.value
 });
 
